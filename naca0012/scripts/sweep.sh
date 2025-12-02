@@ -12,16 +12,16 @@ do
   cd aoa$aoa
   
   # Copy original .ini and .pbrm files
-  cp ../naca2412.ini naca2412.ini
-  cp ../naca2412.pbrm naca2412.pbrm
+  cp ../naca0012.ini naca0012.ini
+  cp ../naca0012.pbrm naca0012.pbrm
   
   # Edit AOA in the copied .ini file
-  python ../scripts/aoa_sweep.py naca2412.ini $aoa.0 naca2412.ini 
+  python ../scripts/aoa_sweep.py naca0012.ini $aoa.0 naca0012.ini
   
   # Run CFD with local files
-  pybaram run naca2412.pbrm naca2412.ini
-  pybaram export naca2412.pbrm out-10000.pbrs aoa$aoa.vtu
-  
+  pybaram run naca0012.pbrm naca0012.ini
+  pybaram export naca0012.pbrm out-10000.pbrs aoa$aoa.vtu
+
   # Create ParaView state file with correct AOA (in same directory as .vtu)
   sed -e "s|./aoa4.vtu|./aoa${aoa}.vtu|g" \
       -e "s|name=\"out.vtu\" logname=\"out.vtu\"|name=\"aoa${aoa}.vtu\" logname=\"aoa${aoa}.vtu\"|g" \
