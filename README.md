@@ -39,6 +39,32 @@
 3.  **ParaView** (가시화 도구)
 4.  **Python 3.x** (`numpy`, `pandas`, `matplotlib` 설치 필요)
 
+## 📘 PyBaram 사용법
+
+이 프로젝트의 핵심 솔버인 **PyBaram**은 비정렬 격자 기반의 압축성 유동 해석용 파이썬 소프트웨어입니다.
+
+*   **GitLab 저장소:** [https://gitlab.com/aadl_inha/pyBaram](https://gitlab.com/aadl_inha/pyBaram)
+*   **공식 문서:** [https://aadl_inha.gitlab.io/pyBaram/](https://aadl_inha.gitlab.io/pyBaram/)
+
+### 설치 방법
+PyPI에 등록되어 있지 않으므로 소스에서 직접 설치해야 합니다. 상세한 방법은 [공식 문서의 설치 가이드](https://aadl_inha.gitlab.io/pyBaram/installation.html)를 참조하세요. 일반적으로 저장소를 클론하고 가상 환경에서 설치합니다.
+
+### 주요 명령어
+이 프로젝트에서 주로 사용되는 명령어는 다음과 같습니다:
+
+*   **격자 변환 (`import`):** Gmsh 등으로 생성된 격자 파일(.msh)을 PyBaram 전용 포맷(.pbrm)으로 변환합니다.
+    ```bash
+    pybaram import [입력파일.msh] [출력파일.pbrm]
+    ```
+*   **해석 실행 (`run`):** 설정 파일(.ini)과 격자 파일(.pbrm)을 사용하여 시뮬레이션을 수행합니다.
+    ```bash
+    pybaram run [격자파일.pbrm] [설정파일.ini]
+    ```
+*   **결과 내보내기 (`export`):** 해석 결과(.pbrs)를 가시화 도구(ParaView)에서 읽을 수 있는 포맷(.vtu)으로 변환합니다.
+    ```bash
+    pybaram export [격자파일.pbrm] [결과파일.pbrs] [출력파일.vtu]
+    ```
+
 ## 📖 사용 가이드
 
 ### 1. 격자 생성 및 가져오기
