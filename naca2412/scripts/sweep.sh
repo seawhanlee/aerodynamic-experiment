@@ -25,7 +25,7 @@ do
   # Create ParaView state file with correct AOA (in same directory as .vtu)
   sed -e "s|./aoa4.vtu|./aoa${aoa}.vtu|g" \
       -e "s|name=\"out.vtu\" logname=\"out.vtu\"|name=\"aoa${aoa}.vtu\" logname=\"aoa${aoa}.vtu\"|g" \
-      ../results/contours.pvsm > contours_aoa$aoa.pvsm
+      ../results/contours.pvsm > contours.pvsm
   
   cd ..
   # Print blank line for readability between AOA runs
