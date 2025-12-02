@@ -60,6 +60,12 @@ Visualize the results using ParaView:
 paraview --state=results/contours.pvsm
 ```
 
+### 5. Analysis
+The `results/` directory contains analysis scripts and stores output images for each profile.
+*   `results/plot_CL_py.ipynb`: Python notebook to plot Lift Coefficient (CL) vs Angle of Attack.
+    *   **Usage:** Open the notebook, set the `profile` variable (e.g., `'naca0012'`, `'naca23012'`) in the first cell, and run all cells.
+    *   **Output:** Saves `cl.png` to the respective profile folder (e.g., `results/naca0012/cl.png`).
+
 ## Scripts
 *   `scripts/import_pts.py`: Root-level script to convert point data files into Gmsh `.geo` files with spline definitions.
     *   Usage: `python scripts/import_pts.py <points_file> <output_geo_file> [is_spline]`
