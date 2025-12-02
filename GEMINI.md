@@ -71,3 +71,8 @@ The `results/` directory contains analysis scripts and stores output images for 
     *   Usage: `python scripts/import_pts.py <points_file> <output_geo_file> [is_spline]`
 *   `scripts/aoa_sweep.py`: Helper script used by `sweep.sh` to modify the `aoa` parameter in `.ini` files programmatically.
 *   `scripts/sweep.sh`: Shell script to orchestrate the AoA sweep process. Run this from the airfoil directory.
+
+## Development Guidelines
+*   **Commit Messages:**
+    *   Must be written in Korean.
+    *   Must follow the standard format: `<type>: <description>` (e.g., `feat: 새로운 기능 추가`, `fix: 버그 수정`).
