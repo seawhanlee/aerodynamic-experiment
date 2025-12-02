@@ -90,32 +90,44 @@ Point(83) = {-25, -25, 0, 1.0};
 //+
 Point(84) = {-25, 25, 0, 1.0};
 //+
-Line(3) = {84, 81};
+Line(3) = {84, 83};
 //+
-Line(4) = {81, 82};
+Line(4) = {83, 82};
 //+
-Line(5) = {82, 83};
+Line(5) = {82, 81};
 //+
-Line(6) = {83, 84};
+Line(6) = {81, 84};
 //+
-Curve Loop(1) = {6, 3, 4, 5};
+Curve Loop(1) = {3, 4, 5, 6};
 //+
 Curve Loop(2) = {1, 2};
 //+
 Plane Surface(1) = {1, 2};
 //+
-Plane Surface(2) = {2};
-//+
-Plane Surface(3) = {2};
-//+
-Plane Surface(4) = {2};
-//+
-Plane Surface(5) = {2};
-//+
-Transfinite Curve {6, 3, 4, 5} = 20 Using Progression 1;
+Transfinite Curve {3, 6, 5, 4} = 20 Using Progression 1;
 //+
 Transfinite Curve {1, 2} = 150 Using Bump 0.3;
 //+
 Physical Curve("airfoil", 7) = {1, 2};
 //+
-Physical Curve("farfield", 8) = {3, 6, 4, 5};
+Physical Surface("fluid", 8) = {1};
+//+
+Physical Curve("farfield", 9) = {3, 6, 5, 4};
+//+
+Field[1] = BoundaryLayer;
+//+
+Field[1].CurvesList = {1, 2};
+//+
+Field[1].FanPointsList = {1};
+//+
+Field[1].FanPointsSizesList = {21};
+//+
+Field[1].Quads = 1;
+//+
+Field[1].Size = 0.005;
+//+
+Field[1].SizeFar = 0.05;
+//+
+Field[1].Thickness = 0.1;
+//+
+BoundaryLayer Field = 1;
