@@ -54,7 +54,16 @@ do
 
   # Run CFD with local files
   pybaram run $naca.pbrm $naca.ini
-  pybaram export $naca.pbrm out-10000.pbrs aoa$aoa.vtu
+  
+  # Find the last iteration file (converged or max iteration)
+  last_pbrs=$(ls -v out-*.pbrs 2>/dev/null | tail -n 1)
+
+  if [ -n "$last_pbrs" ]; then
+      echo "Exporting result from $last_pbrs"
+      pybaram export $naca.pbrm "$last_pbrs" aoa$aoa.vtu
+  else
+      echo "Error: No output .pbrs files found for AOA $aoa"
+  fi
 
   # Create ParaView state file with correct AOA
   # Using ../../results/contours.pvsm because results are now in root
