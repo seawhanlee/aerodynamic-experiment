@@ -48,7 +48,7 @@ To automatically run simulations for a range of AoAs (0, 2, ..., 18 degrees):
 
 ```bash
 cd naca0012  # Enter the specific airfoil directory
-sh scripts/sweep.sh
+sh ../scripts/sweep.sh
 ```
 *Note: This script creates `aoaX` directories, modifies the configuration for each angle, runs the solver, and exports the results.*
 
@@ -61,7 +61,7 @@ paraview --state=results/contours.pvsm
 ```
 
 ## Scripts
-*   `import_pts.py`: Root-level script to convert point data files into Gmsh `.geo` files with spline definitions.
-    *   Usage: `python import_pts.py <points_file> <output_geo_file> [is_spline]`
+*   `scripts/import_pts.py`: Root-level script to convert point data files into Gmsh `.geo` files with spline definitions.
+    *   Usage: `python scripts/import_pts.py <points_file> <output_geo_file> [is_spline]`
 *   `scripts/aoa_sweep.py`: Helper script used by `sweep.sh` to modify the `aoa` parameter in `.ini` files programmatically.
-*   `scripts/sweep.sh`: Shell script to orchestrate the AoA sweep process.
+*   `scripts/sweep.sh`: Shell script to orchestrate the AoA sweep process. Run this from the airfoil directory.
