@@ -16,6 +16,7 @@
 
 ```text
 .
+├── fix_pvsm_paths.py   # ParaView 상태 파일(.pvsm) 경로 수정 유틸리티
 ├── scripts/            # 자동화를 위한 중앙 스크립트 (AoA 스윕, 격자 가져오기 등)
 ├── results/            # 분석용 노트북 및 중앙 가시화 상태 파일
 │   ├── naca0012/       # NACA 0012에 대한 출력 이미지/플롯
@@ -116,6 +117,17 @@ paraview --state=results/contours.pvsm
     ```
 3.  모든 셀을 실행합니다.
 4.  결과 플롯은 `results/naca0012/` 디렉토리에 `cl.png`로 저장됩니다.
+
+### 5. 유틸리티
+
+**ParaView 상태 파일 경로 수정 (`fix_pvsm_paths.py`)**
+
+프로젝트 디렉토리가 이동하거나 다른 환경에서 작업할 때, ParaView 상태 파일(`contours.pvsm`) 내의 절대 경로가 깨질 수 있습니다. 이 스크립트는 현재 디렉토리를 기준으로 경로를 일괄 수정합니다.
+
+```bash
+python fix_pvsm_paths.py
+```
+*이 명령은 프로젝트 내의 모든 `contours.pvsm` 파일을 찾아 경로를 자동으로 업데이트합니다.*
 
 ## 🤝 기여하기
 
