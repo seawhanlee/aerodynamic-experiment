@@ -128,13 +128,3 @@ paraview --state=results/contours.pvsm
 python fix_pvsm_paths.py
 ```
 *이 명령은 프로젝트 내의 모든 `contours.pvsm` 파일을 찾아 경로를 자동으로 업데이트합니다.*
-
-## 🤝 기여하기
-
-새로운 NACA 프로필을 자유롭게 추가해 주세요!
-1.  새 디렉토리를 생성합니다 (예: `nacaXXXX`).
-2.  `mesh/` 파일과 `.ini` 설정을 추가합니다.
-3.  위에서 설명한 대로 스윕 스크립트를 실행합니다.
-
----
-*즐거운 시뮬레이션 되세요!*
