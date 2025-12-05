@@ -29,54 +29,9 @@ fi
 
 echo "Running AOA sweep from $start_aoa to $end_aoa with increment $aoa_increment"
 
+# Create runs directory if it doesn't exist
+mkdir -p runs
+
 for aoa in $(seq $start_aoa $aoa_increment $end_aoa)
 do
-  echo "=========================================="
-  echo "Running CFD for AOA = $aoa degrees"
-  echo "=========================================="
-  
-  mkdir -p aoa$aoa
-  cd aoa$aoa
-  
-  # Copy original .ini and .pbrm files
-  cp ../$naca.ini $naca.ini
-  cp ../$naca.pbrm $naca.pbrm
-  
-  # Edit AOA in the copied .ini file
-  # We are in nacaXXXX/aoaXX, so scripts are in ../../scripts
-  if [ -f "../../scripts/aoa_sweep.py" ]; then
-      python ../../scripts/aoa_sweep.py $naca.ini $aoa.0 $naca.ini
-  else
-      echo "Error: ../../scripts/aoa_sweep.py not found."
-      cd ..
-      exit 1
-  fi
-
-  # Run CFD with local files
-  pybaram run $naca.pbrm $naca.ini
-  
-  # Find the last iteration file (converged or max iteration)
-  last_pbrs=$(ls -v out-*.pbrs 2>/dev/null | tail -n 1)
-
-  if [ -n "$last_pbrs" ]; then
-      echo "Exporting result from $last_pbrs"
-      pybaram export $naca.pbrm "$last_pbrs" aoa$aoa.vtu
-  else
-      echo "Error: No output .pbrs files found for AOA $aoa"
-  fi
-
-  # Create ParaView state file with correct AOA
-  # Using ../../results/contours.pvsm because results are now in root
-  if [ -f "../../results/contours.pvsm" ]; then
-      sed -e "s|./aoa4.vtu|./aoa${aoa}.vtu|g" \
-          -e "s|name=\"out.vtu\" logname=\"out.vtu\"|name=\"aoa${aoa}.vtu\" logname=\"aoa${aoa}.vtu\"|g" \
-          ../../results/contours.pvsm > ./contours.pvsm
-  fi
-  
-  cd ..
-  echo
-done
-
-echo "=========================================="
-echo "CFD complete for $naca"
-echo "=========================================="
+  echo "==========================================
