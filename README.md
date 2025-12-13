@@ -68,6 +68,22 @@ PyPI에 등록되어 있지 않으므로 소스에서 직접 설치해야 합니
 
 ## 📖 사용 가이드
 
+### 0. 형상 데이터 변환 (.dat -> .geo)
+
+UIUC Airfoil Database 등에서 다운로드한 점 데이터 파일(`.dat`)을 Gmsh용 형상 파일(`.geo`)로 변환하려면 `scripts/import_pts.py` 스크립트를 사용합니다.
+
+```bash
+python scripts/import_pts.py <입력_파일.dat> <출력_파일.geo> [스플라인_사용_여부]
+```
+
+예시:
+```bash
+python scripts/import_pts.py naca0012/mesh/naca0012.dat naca0012/mesh/naca0012.geo True
+```
+
+*   **스플라인 사용 여부:** `True`로 설정하면 점들을 부드러운 스플라인 곡선으로 연결하는 정의가 추가됩니다. (기본값: `False`)
+*   *주의: 입력 `.dat` 파일은 첫 번째 줄에 헤더(또는 건너뛸 행)가 있다고 가정합니다.*
+
 ### 1. 격자 생성 및 가져오기
 
 격자를 재생성하거나 새로 가져와야 하는 경우 (예: `naca0012`):

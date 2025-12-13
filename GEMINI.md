@@ -88,5 +88,5 @@ The `results/` directory contains analysis scripts and stores output images for 
 
 ## Development Guidelines
 *   **Commit Messages:**
-    *   Must be written in Korean.
+    *   Always write commit message in Korean.
     *   Must follow the standard format: `<type>: <description>` (e.g., `feat: 새로운 기능 추가`, `fix: 버그 수정`).

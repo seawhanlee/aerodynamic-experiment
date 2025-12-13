@@ -8,7 +8,7 @@ def _concate_pts(n, i0=0):
     return ','.join(str(i) for i in range(i0, i0+n+1))
 
 
-def main(ptsf, geof, is_splie=False):
+def main(ptsf, geof, is_spline=False):
     # Get pts
     pts = np.loadtxt(ptsf, skiprows=1)
     
