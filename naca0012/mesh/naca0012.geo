@@ -82,51 +82,33 @@ Point(80) = {0.998459,-0.000224, 0.0, 1.0 };
 Spline(1) = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41};
 Spline(2) = {41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,1};
 //+
-Point(81) = {25, 25, 0, 1.0};
+Point(81) = {-25, -25, 0, 1.0};
+Point(82) = {25, -25, 0, 1.0};
+Point(83) = {25, 25, 0, 1.0};
+Point(84) = {-25, 25, 0, 1.0};
 //+
-Point(82) = {-25, -25, 0, 1.0};
+Line(3) = {81, 82};
+Line(4) = {82, 83};
+Line(5) = {83, 84};
+Line(6) = {84, 81};
 //+
-Point(83) = {-25, 25, 0, 1.0};
-//+
-Point(84) = {25, -25, 0, 1.0};
-//+
-Line(3) = {83, 82};
-//+
-Line(4) = {82, 84};
-//+
-Line(5) = {84, 81};
-//+
-Line(6) = {81, 83};
-//+
-Transfinite Curve {4, 3, 6, 5} = 20 Using Progression 1;
-//+
-Transfinite Curve {1, 2} = 150 Using Bump 0.3;
-//+
-Physical Curve("airfoil", 7) = {1, 2};
-//+
-Physical Curve("farfield", 8) = {3, 6, 5, 4};
-//+
-Curve Loop(1) = {3, 4, 5, 6};
-//+
-Curve Loop(2) = {1, 2};
-//+
+Curve Loop(1) = {1, 2};
+Curve Loop(2) = {6, 3, 4, 5};
 Plane Surface(1) = {1, 2};
 //+
-Physical Surface("fluid", 9) = {1};//+
+Transfinite Curve {6, 5, 4, 3} = 20 Using Progression 1;
+Transfinite Curve {1, 2} = 150 Using Bump 0.3;
+
+Physical Curve("farfield", 7) = {6, 5, 4, 3};
+Physical Curve("airfoil", 8) = {1, 2};
+Physical Surface("fluid", 9) = {1};
+//+
 Field[1] = BoundaryLayer;
-//+
 Field[1].CurvesList = {1, 2};
-//+
 Field[1].FanPointsList = {1};
-//+
 Field[1].FanPointsSizesList = {21};
-//+
-Field[1].Quads = 1;
-//+
 Field[1].Size = 0.005;
-//+
 Field[1].SizeFar = 0.05;
-//+
 Field[1].Thickness = 0.1;
-//+
+Field[1].Quads = 1;
 BoundaryLayer Field = 1;

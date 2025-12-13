@@ -64,16 +64,16 @@ do
   if [ -n "$last_pbrs" ]; then
       echo "Exporting result from $last_pbrs"
       pybaram export $naca.pbrm "$last_pbrs" aoa$aoa.vtu
+      
+      # Copy contours.pvsm and update VTU file path for this AOA
+      if [ -f "../../../results/contours.pvsm" ]; then
+          echo "Creating ParaView state file for AOA $aoa"
+          sed "s|./aoa[0-9\-]*\.vtu|./aoa$aoa.vtu|g" ../../../results/contours.pvsm > contours.pvsm
+      else
+          echo "Warning: ../../../results/contours.pvsm not found, skipping state file creation"
+      fi
   else
       echo "Error: No output .pbrs files found for AOA $aoa"
-  fi
-
-  # Create ParaView state file with correct AOA
-  # Using ../../../results/contours.pvsm because results are now in root
-  if [ -f "../../../results/contours.pvsm" ]; then
-      sed -e "s|./aoa4.vtu|./aoa${aoa}.vtu|g" \
-          -e "s|name=\"out.vtu\" logname=\"out.vtu\"|name=\"aoa${aoa}.vtu\" logname=\"aoa${aoa}.vtu\"|g" \
-          ../../../results/contours.pvsm > ./contours.pvsm
   fi
   
   cd ../..
